@@ -1,7 +1,10 @@
 package main
 
-import "hello/src"
+import (
+	"fmt"
+	"hello/cmd/hello"
+)
 
 func main() {
-	src.Hello("ken")
+	fmt.Println(hello.Hello("ken", ""))
 }

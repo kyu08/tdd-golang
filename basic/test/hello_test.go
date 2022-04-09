@@ -1,7 +1,7 @@
 package test
 
 import (
-	"hello/src"
+	"hello/cmd/hello"
 	"testing"
 )
 
@@ -14,7 +14,7 @@ func TestHello(t *testing.T) {
 	}
 
 	t.Run("saying Hello to people", func(t *testing.T) {
-		got := src.Hello("ken", "Spanish")
+		got := hello.Hello("ken", "Spanish")
 		want := "Hola, ken"
 		assertCorrectMessage(t, got, want)
 		if got != want {
@@ -22,12 +22,12 @@ func TestHello(t *testing.T) {
 		}
 	})
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
-		got := src.Hello("", "JavaScript")
+		got := hello.Hello("", "JavaScript")
 		want := "Hello, World"
 		assertCorrectMessage(t, got, want)
 	})
 	t.Run("greet french ver", func(t *testing.T) {
-		got := src.Hello("", "French")
+		got := hello.Hello("", "French")
 		want := "Bonjour, World"
 		assertCorrectMessage(t, got, want)
 	})

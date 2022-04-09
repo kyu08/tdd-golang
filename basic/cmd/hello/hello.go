@@ -1,4 +1,4 @@
-package src
+package hello
 
 const spanish = "Spanish"
 const french = "French"
