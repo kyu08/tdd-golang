@@ -28,3 +28,6 @@ func Hello(name string) string {
 関数のGo Docに表示されるので、コードの意図をより明確にすることができる
 ただ、コード自体の可読性が落ちるように感じるのであまり使いたいとは思わなかった
 
+# slice の比較
+slice で等号演算子を使うことはできないのでここでは`reflect.DeepEqual`を使う
+ただし、 `reflect.DeepEqual` は型安全ではないため注意して使う必要がある
