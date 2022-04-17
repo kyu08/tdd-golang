@@ -31,3 +31,7 @@ func Hello(name string) string {
 # slice の比較
 slice で等号演算子を使うことはできないのでここでは`reflect.DeepEqual`を使う
 ただし、 `reflect.DeepEqual` は型安全ではないため注意して使う必要がある
+
+# errcheck による網羅性のチェック
+`go install github.com/kisielk/errcheck@latest` して `errcheck ./...` を実行するとエラーをチェックしていない箇所を教えてくれる
+

@@ -23,9 +23,11 @@ func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }
 
+const ErrorMessage = "cannot withdraw!"
+
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 	if amount > w.balance {
-		return errors.New("oh no")
+		return errors.New(ErrorMessage)
 	}
 
 	w.balance -= amount

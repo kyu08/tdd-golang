@@ -11,9 +11,9 @@ func TestArea(t *testing.T) {
 		shape structs.Shape
 		want  float64
 	}{
-		{"rectangle", structs.Rectangle{12, 6}, 72.0},
-		{"circle", structs.Circle{10}, 314.1592653589793},
-		{"triangle", structs.Triangle{3, 2}, 3},
+		{"rectangle", structs.Rectangle{Width: 12, Height: 6}, 72.0},
+		{"circle", structs.Circle{Radius: 10}, 314.1592653589793},
+		{"triangle", structs.Triangle{Width: 3, Height: 2}, 3},
 	}
 	for _, tt := range areaTests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -32,12 +32,12 @@ func TestArea(t *testing.T) {
 		}
 	}
 	t.Run("rectangle area", func(t *testing.T) {
-		rectangle := structs.Rectangle{10.0, 10.0}
+		rectangle := structs.Rectangle{Width: 10.0, Height: 10.0}
 		checkArea(t, rectangle, 100.0)
 	})
 
 	t.Run("circle area", func(t *testing.T) {
-		circle := structs.Circle{10}
+		circle := structs.Circle{Radius: 10}
 		checkArea(t, circle, 314.1592653589793)
 	})
 }
