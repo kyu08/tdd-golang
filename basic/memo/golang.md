@@ -35,3 +35,16 @@ slice で等号演算子を使うことはできないのでここでは`reflect
 # errcheck による網羅性のチェック
 `go install github.com/kisielk/errcheck@latest` して `errcheck ./...` を実行するとエラーをチェックしていない箇所を教えてくれる
 
+# map の注意点
+空のマップ変数を以下のように初期化してしまうとゼロ値である `nil` になってしまう。 nilマップに書き込もうとするとランタイムパニックが発生してしまう。
+```go
+var m map[string]string
+```
+
+そのため、以下のようにしてマップを作成しておくべきである。
+```go
+var m = map[string]string{}
+
+// or
+var m = make(map[string]string)
+```
