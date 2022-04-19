@@ -19,40 +19,20 @@ func TestSearch(t *testing.T) {
 	})
 }
 
-
-
-
-
-
-
-
-
-
-
-`map_test.go:18: 👺 got ERR: value not exist. but want ERR: value not exist.`
-ってなるってことはもしかして error 同士の比較ってうまくできないのかな？
-
-
-
-
-
-
-
 func TestAdd(t *testing.T) {
 	t.Run("new word", func(t *testing.T) {
 		dictionary := maps.Dictionary{}
 		key := "editor"
 		value := "vim"
-		dictionary.Add(key, value)
+		err := dictionary.Add(key, value)
 		assertDefinition(t, dictionary, key, value)
+		assertError(t, err, nil)
 	})
 
 	t.Run("existing word", func(t *testing.T) {
 		dictionary := maps.Dictionary{"one": "ichi"}
 		err := dictionary.Add("one", "uno")
-		if err != nil {
-			t.Errorf("👺 got %s but want %s", err, maps.ErrWordExists)
-		}
+		assertError(t, err, maps.ErrWordExists)
 	})
 }
 
@@ -78,7 +58,7 @@ func assertStrings(t *testing.T, got, want string) {
 
 func assertError(t *testing.T, got error, want error) {
 	t.Helper()
-	if got != nil {
+	if got != want {
 		t.Errorf("👺 got %s but want %s", got, want)
 		return
 	}
