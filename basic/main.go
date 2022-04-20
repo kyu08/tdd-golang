@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"hello/cmd/hello"
+	"hello/cmd/di"
+	"net/http"
 )
 
 func main() {
-	fmt.Println(hello.Hello("ken", ""))
+	http.ListenAndServe(":5000", http.HandlerFunc(di.MyGreeterHandler))
 }
