@@ -1,10 +1,10 @@
 package main
 
 import (
-	"hello/cmd/di"
-	"net/http"
+	"hello/cmd/mocking"
+	"os"
 )
 
 func main() {
-	http.ListenAndServe(":5000", http.HandlerFunc(di.MyGreeterHandler))
+	mocking.Countdown(os.Stdout, &mocking.DefaultSleeper{})
 }
