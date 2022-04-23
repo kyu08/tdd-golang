@@ -1,6 +1,7 @@
 package test
 
 import (
+	"hello/cmd/concurrency"
 	"reflect"
 	"testing"
 )
@@ -26,9 +27,19 @@ func TestCheckWebsites(t *testing.T) {
 		"waat://furhurterwe.geds":    false,
 	}
 
-	got := CheckWebsites(mockWebsiteChecker, websites)
+	got := concurrency.CheckWebsites(mockWebsiteChecker, websites)
 
 	if !reflect.DeepEqual(want, got) {
 		t.Fatalf("Wanted %v, got %v", want, got)
+	}
+}
+
+func BenchmarkCheckWebsites(b *testing.B) {
+	urls := make([]string, 100)
+	for i := 0; i < len(urls); i++ {
+		urls[i] = "a url"
+	}
+	for i := 0; i < b.N; i++ {
+		concurrency.CheckWebsites(concurrency.SlowStubWebsiteChecker, urls)
 	}
 }
