@@ -47,3 +47,22 @@ var m = map[string]string{}
 // or
 var m = make(map[string]string)
 ```
+
+# for文内でgoroutine を使う時の注意
+以下のような書き方をすると変数が上書きされてしまうことに注意する
+```go
+for url, _ := range urls {
+  go func() {
+    someFunc(url)
+  }()
+}
+```
+以下のようにすると、各goroutine が独立した変数としての u を持つことができる
+```go
+for url, _ := range urls {
+  go func(u string) {
+    someFunc(u)
+  }(url)
+}
+```
+
