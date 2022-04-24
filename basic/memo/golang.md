@@ -48,6 +48,8 @@ var m = map[string]string{}
 var m = make(map[string]string)
 ```
 
+ちなみに `channel`についても同様で、`var ch chan struct{}` とすると `ch` の値はゼロ値である `nil` になってしまうので `make` で初期化しておいた方がよい
+
 # for文内でgoroutine を使う時の注意
 以下のような書き方をすると変数が上書きされてしまうことに注意する
 ```go
