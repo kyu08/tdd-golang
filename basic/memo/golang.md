@@ -76,3 +76,13 @@ TS でいう `any` は golang では `interface{}`に相当する
 
 ## golang にも any があるみたいだけど interface{} とどう違うのか
 
+## context とは
+https://zenn.dev/hsaki/books/golang-context/viewer/definition
+
+`Context`型の主な役割
+- 処理の締切を伝達
+- キャンセル信号の伝播
+- リクエストスコープ値の伝達
+
+`複数ゴールーチン間で安全に、そして簡単に情報伝達を行いたい`
+
