@@ -86,7 +86,39 @@ https://zenn.dev/hsaki/books/golang-context/viewer/definition
 
 `複数ゴールーチン間で安全に、そして簡単に情報伝達を行いたい`
 
+### timeout
 タイムアウト設定をしていた場合にも、明治的に`cancel`を呼ぶべき(contextリークを防ぐため)
 https://pkg.go.dev/context#example-WithDeadline
 
+### Value メソッド
+値の伝達のために使う
+
+
+
 ## waitgroup とは
+https://qiita.com/ruiu/items/dba58f7b03a9a2ffad65
+`sync.WaitGroup` は複数の goroutine の完了を待つための値
+以下のように goroutine の中で `wg.Add(1)`すると `wg.Add(1)`が呼ばれる前に `wg.Wait()` が呼ばれるとただしく動作しない。
+```go
+wg := &sync.WaitGroup{}  // WaitGroupの値を作る
+for i := 0; i < 10; i++ { // （例として）10回繰り返す
+    go func() {
+        wg.Add(1)  // wgをインクリメント
+        // ここで何か処理を行う
+        wg.Done()  // 完了したのでwgをデクリメント
+    }()
+}
+wg.Wait()  // メインのgoroutineはサブgoroutine 10個が完了するのを待つ
+```
+なので goroutine の外側で `wg.Add(1)`する
+```go
+wg := &sync.WaitGroup{}  // WaitGroupの値を作る
+for i := 0; i < 10; i++ { // （例として）10回繰り返す
+    wg.Add(1)  // wgをインクリメント
+    go func() {
+        // ここで何か処理を行う
+        wg.Done()  // 完了したのでwgをデクリメント
+    }()
+}
+wg.Wait()  // メインのgoroutineはサブgoroutine 10個が完了するのを待つ
+```
