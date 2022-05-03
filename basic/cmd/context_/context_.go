@@ -3,6 +3,7 @@ package context_
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 type Store interface {
@@ -18,7 +19,7 @@ func server(store Store) http.HandlerFunc {
 			data <- store.Fetch()
 		}()
 
-    ↓これの Done() を解読するところから
+		// ↓これの Done() を解読するところから
 
 		select {
 		case d := <-data:
@@ -26,5 +27,6 @@ func server(store Store) http.HandlerFunc {
 		case <-ctx.Done():
 			store.Cancel()
 		}
+		time.Now().Add(time.Second)
 	}
 }

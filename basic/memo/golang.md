@@ -86,3 +86,7 @@ https://zenn.dev/hsaki/books/golang-context/viewer/definition
 
 `複数ゴールーチン間で安全に、そして簡単に情報伝達を行いたい`
 
+タイムアウト設定をしていた場合にも、明治的に`cancel`を呼ぶべき(contextリークを防ぐため)
+https://pkg.go.dev/context#example-WithDeadline
+
+## waitgroup とは
