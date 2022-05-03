@@ -113,7 +113,6 @@ https://pkg.go.dev/context#example-WithDeadline
 - トレースID
 などである。
 
-
 ## waitgroup とは
 https://qiita.com/ruiu/items/dba58f7b03a9a2ffad65
 `sync.WaitGroup` は複数の goroutine の完了を待つための値
