@@ -30,7 +30,12 @@ func TestRomanNumerals(t *testing.T) {
 		{"451", 451, "CDLI"},
 		{"500", 500, "D"},
 		{"900", 900, "CM"},
+		{"798", 798, "DCCXCVIII"},
 		{"1000", 1000, "M"},
+		{"1984", 1984, "MCMLXXXIV"},
+		{"3999", 3999, "MMMCMXCIX"},
+		{"2014", 2014, "MMXIV"},
+		{"1006", 1006, "MVI"},
 	}
 
 	for _, tt := range tests {
