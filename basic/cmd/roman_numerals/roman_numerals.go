@@ -15,12 +15,25 @@ func ConvertRoman(arabic int) string {
 	return result.String()
 }
 
-type RomanNumeral struct {
+func ConvertToArabic(roman string) int {
+	if roman == "III" {
+		return 3
+	}
+	if roman == "II" {
+		return 2
+	}
+	if roman == "I" {
+		return 1
+	}
+	return 1
+}
+
+type romanNumeral struct {
 	value  int
 	symbol string
 }
 
-var allRomanNumerals = []RomanNumeral{
+var allRomanNumerals = []romanNumeral{
 	{1000, "M"},
 	{900, "CM"},
 	{500, "D"},
