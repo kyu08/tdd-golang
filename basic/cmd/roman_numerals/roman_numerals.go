@@ -16,16 +16,11 @@ func ConvertRoman(arabic int) string {
 }
 
 func ConvertToArabic(roman string) int {
-	if roman == "III" {
-		return 3
+	arabic := 0
+	for range roman {
+		arabic++
 	}
-	if roman == "II" {
-		return 2
-	}
-	if roman == "I" {
-		return 1
-	}
-	return 1
+	return arabic
 }
 
 type romanNumeral struct {

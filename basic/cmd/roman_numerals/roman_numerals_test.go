@@ -6,7 +6,7 @@ import (
 )
 
 func TestConvertingToArabic(t *testing.T) {
-	for _, tt := range tests[:3] {
+	for _, tt := range tests[:4] {
 		t.Run(fmt.Sprintf("%q gets converted to %d", tt.Roman, tt.Arabic), func(t *testing.T) {
 			got := ConvertToArabic(tt.Roman)
 			if got != tt.Arabic {
