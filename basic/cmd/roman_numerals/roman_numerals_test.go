@@ -17,14 +17,14 @@ func TestConvertingToArabic(t *testing.T) {
 }
 
 func TestRomanNumerals(t *testing.T) {
-	// for _, tt := range tests {
-	// 	t.Run(tt.Description, func(t *testing.T) {
-	// 		got := ConvertRoman(tt.Arabic)
-	// 		if got != tt.Roman {
-	// 			t.Errorf("👺 got %q, but want %q", got, tt.Roman)
-	// 		}
-	// 	})
-	// }
+	for _, tt := range tests {
+		t.Run(tt.Description, func(t *testing.T) {
+			got := ConvertRoman(tt.Arabic)
+			if got != tt.Roman {
+				t.Errorf("👺 got %q, but want %q", got, tt.Roman)
+			}
+		})
+	}
 }
 
 var tests = []struct {

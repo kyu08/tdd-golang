@@ -75,6 +75,11 @@ TS でいう `any` は golang では `interface{}`に相当する
 実行時にチェックを行う必要があるため、一般的にパフォーマンスが低下する。
 
 ## golang にも any があるみたいだけど interface{} とどう違うのか
+違わないよ
+https://zenn.dev/syumai/articles/c6q5un1j0msim0aj0ca0
+```go
+type any = interface{}
+```
 
 ## context とは
 https://zenn.dev/hsaki/books/golang-context/viewer/definition
@@ -140,3 +145,5 @@ for i := 0; i < 10; i++ { // （例として）10回繰り返す
 }
 wg.Wait()  // メインのgoroutineはサブgoroutine 10個が完了するのを待つ
 ```
+
+# generics
