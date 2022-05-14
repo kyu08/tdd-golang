@@ -7,15 +7,20 @@ import (
 )
 
 type spyPlayerStore struct {
-	score map[string]string
+	score map[string]int
 }
 
-func (s *spyPlayerStore) GetPlayerScore(name string) string {
+func (s *spyPlayerStore) GetPlayerScore(name string) int {
 	return s.score[name]
 }
 
 func TestGETPlayers(t *testing.T) {
-	store := spyPlayerStore{score: map[string]string{"14": "10", "94": "20"}}
+	store := spyPlayerStore{
+		score: map[string]int{
+			"14": 10,
+			"94": 20,
+		},
+	}
 	server := &PlayerServer{store: &store}
 
 	t.Run("returns 94's score", func(t *testing.T) {

@@ -7,8 +7,8 @@ import (
 
 type InMemoryPlayerStore struct{}
 
-func (s *InMemoryPlayerStore) GetPlayerScore(name string) string {
-	return "123"
+func (s *InMemoryPlayerStore) GetPlayerScore(name string) int {
+	return 123
 }
 func main() {
 	s := &PlayerServer{store: &InMemoryPlayerStore{}}
