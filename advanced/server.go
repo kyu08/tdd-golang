@@ -20,8 +20,6 @@ func (s *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if score == 0 {
 		w.WriteHeader(http.StatusNotFound)
-	} else {
-		w.WriteHeader(http.StatusOK)
 	}
 
 	fmt.Fprint(w, score)
