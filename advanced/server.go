@@ -20,8 +20,10 @@ type PlayerServer struct {
 func (s *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
+		fmt.Println("POST")
 		s.storeScore(w, r)
 	case http.MethodGet:
+		fmt.Println("GET")
 		s.showScore(w, r)
 	}
 }
