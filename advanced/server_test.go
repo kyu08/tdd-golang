@@ -72,7 +72,8 @@ func TestStoreWins(t *testing.T) {
 	server := &PlayerServer{&store}
 
 	t.Run("it returns accepted on POST", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodPost, "/players/14", nil)
+		name := "14"
+		request, _ := http.NewRequest(http.MethodPost, "/players/"+name, nil)
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -80,7 +81,11 @@ func TestStoreWins(t *testing.T) {
 		assertResponseCode(t, response.Code, http.StatusAccepted)
 
 		if len(store.winCalls) != 1 {
-			t.Errorf("👺 got %d but got %d", len(store.winCalls), 1)
+			t.Errorf("👺 got %d but want %d", len(store.winCalls), 1)
+		}
+
+		if store.winCalls[0] != name {
+			t.Errorf("👺 got %s but want %s", store.winCalls[0], name)
 		}
 	})
 }
