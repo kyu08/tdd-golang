@@ -7,11 +7,16 @@ import (
 )
 
 type spyPlayerStore struct {
-	score map[string]int
+	score    map[string]int
+	winCalls []string
 }
 
 func (s *spyPlayerStore) GetPlayerScore(name string) int {
 	return s.score[name]
+}
+
+func (s *spyPlayerStore) RecordWin(name string) {
+	s.winCalls = append(s.winCalls, name)
 }
 
 func TestGETPlayers(t *testing.T) {
@@ -61,7 +66,8 @@ func TestGETPlayers(t *testing.T) {
 
 func TestStoreWins(t *testing.T) {
 	store := spyPlayerStore{
-		map[string]int{},
+		score:    map[string]int{},
+		winCalls: nil,
 	}
 	server := &PlayerServer{&store}
 
@@ -72,13 +78,19 @@ func TestStoreWins(t *testing.T) {
 		server.ServeHTTP(response, request)
 
 		assertResponseCode(t, response.Code, http.StatusAccepted)
-	})
 
+		if len(store.winCalls) != 1 {
+			t.Errorf("👺 got %d but got %d", len(store.winCalls), 1)
+		}
+	})
 }
+
+/*
+helpers
+*/
 
 func newGetScoreRequest(name string) *http.Request {
 	request, _ := http.NewRequest(http.MethodGet, "/players/"+name, nil)
-
 	return request
 }
 
@@ -94,4 +106,9 @@ func assertScore(t *testing.T, got, want string) {
 	if got != want {
 		t.Errorf("👺 got %q, want %q", got, want)
 	}
+}
+
+func newPostWinRequest(name string) *http.Request {
+	request, _ := http.NewRequest(http.MethodPost, "/players/"+name, nil)
+	return request
 }
