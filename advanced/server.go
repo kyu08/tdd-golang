@@ -17,7 +17,7 @@ type PlayerServer struct {
 func (s *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
-		s.storeScore(w, r)
+		s.storeScore(w)
 	case http.MethodGet:
 		s.showScore(w, r)
 	}
@@ -34,9 +34,6 @@ func (s *PlayerServer) showScore(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, score)
 }
 
-func (s *PlayerServer) storeScore(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost {
-		w.WriteHeader(http.StatusAccepted)
-		return
-	}
+func (s *PlayerServer) storeScore(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusAccepted)
 }
